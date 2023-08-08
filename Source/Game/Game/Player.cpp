@@ -33,12 +33,10 @@ void Player::Update(float dt) {
 	}
 
 	bunny::vec2 forward = bunny::vec2{ 0, -1 }.Rotate(m_transform.rotation);
-	//addForce(forward * m_speed * thrust);
 
 	auto physicsComponent = GetComponent<bunny::PhysicsComponent>();
 	physicsComponent->ApplyForce(forward * m_speed * thrust);
 
-	//m_transform.position += forward * m_speed * thrust * kiko::g_time.GetDelta();
 	m_transform.position.x = bunny::Wrap(m_transform.position.x, (float)bunny::g_r.GetWidth());
 	m_transform.position.y = bunny::Wrap(m_transform.position.y, (float)bunny::g_r.GetHeight());
 
@@ -105,10 +103,6 @@ void Player::Update(float dt) {
 }
 
 void Player::onCollision(Actor* actor) {
-	/*if (actor->m_tag != m_tag) {
-		m_destroyed = true;
-	}*/
-
 	if (actor->m_tag == "Enemy") {
 		m_health--;
 		if (m_health == 0) {

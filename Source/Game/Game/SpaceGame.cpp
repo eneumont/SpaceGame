@@ -4,16 +4,9 @@
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/Text.h"
-#include "Renderer/ModelManager.h"
-#include "Framework/Scene.h"
-#include "Renderer/ParticleSystem.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Framework/Components/SpriteComponent.h"
-#include "Framework/Components/EnginePhysicsComponent.h"
+#include "Framework/Framework.h"
 
 bool SpaceGame::Initialize() {
-	//m_font = std::make_shared<bunny::Font>("orangejuice.ttf", 24);
 	m_font = bunny::g_rm.Get<bunny::Font>("orangejuice.ttf", 24);
 	m_gametimerText = std::make_unique<bunny::Text>(m_font);
 	m_text1 = std::make_unique<bunny::Text>(m_font);
@@ -52,8 +45,7 @@ void SpaceGame::Update(float dt) {
 		m_scene->RemoveAll();
 	{
 		// create player
-		//std::unique_ptr<Player>
-		auto player = std::make_unique<Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 3 });
+		auto player = std::make_unique<Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 100 });
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components

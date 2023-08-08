@@ -3,20 +3,15 @@
 #include <vector>
 #include <iostream>
 #include <chrono>
-#include "Renderer/ModelManager.h"
 #include <thread>
-#include "Framework/Actor.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Framework/Scene.h"
 #include "Audio/AudioSystem.h"
 #include <memory>
 #include "Game/SpaceGame.h"
-#include "Renderer/ParticleSystem.h"
-#include "Core/Core.h"
 #include <array>
 #include <map>
-#include "Framework/Resource/ResourceManager.h"
+#include "Framework/Framework.h"
 
 using namespace std;
 using vec2 = bunny::Vector2;
@@ -49,42 +44,6 @@ public:
 };
 
 int main(int argc, char* argv[]) {
-	/*int n[4] = { 1, 2, 3, 4 };
-	print("array: ", n);
-	cout << n << endl;
-	cout << *(n + 3) << endl;
-
-	std::array<int, 4> na = { 1, 2, 3, 4 };
-	print("array class: ", na);
-	cout << na.front() << endl;
-	cout << na.back() << endl;
-	cout << na.max_size() << endl;
-
-	std::vector<int> nv = { 1, 2, 3, 4 };
-	print("vector: ", nv);
-	nv.insert(nv.begin() + 2, 0);
-	nv.push_back(5);
-	nv.pop_back();
-	auto iter = nv.erase(nv.begin(), nv.end());
-	print("vector", nv);
-
-	std::list<int> nl = { 1, 2, 3, 4 };
-	print("list:", nl);
-	nl.push_front(0);
-	print("list:", nl);
-
-	std::map<std::string, int> ages;
-	ages["Charles"] = 17;
-	ages["Jacob"] = 18;
-	ages["Cam"] = 19;
-	ages["Unc"] = 21;
-
-	cout << ages["Charles"] << endl;
-	cout << ages["Jacob"] << endl;
-	int* j = nullptr;
-	ASSERT_LOG(j, "pointer is null");
-	INFO_LOG("hi");*/
-
 	bunny::MemoryTracker::Initialize();
 	bunny::seedRandom((unsigned int)time(nullptr));
 	bunny::setFilePath("Assets");
@@ -107,8 +66,6 @@ int main(int argc, char* argv[]) {
 		stars.push_back(Star(pos, vel));
 	}
 
-	bunny::res_t<bunny::Texture> texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
-
 	//game loop
 	bool quit = false;
 	while (!quit) {
@@ -126,8 +83,6 @@ int main(int argc, char* argv[]) {
 		bunny::g_r.SetColor(0, 0, 0, 0);
 		bunny::g_r.BeginFrame();
 
-		bunny::g_r.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
-
 		// draw
 		for (auto& star : stars) {
 			star.Update(bunny::g_r.GetWidth(), bunny::g_r.GetHeight());
@@ -140,11 +95,9 @@ int main(int argc, char* argv[]) {
 		game->Draw(bunny::g_r);
 
 		bunny::g_r.EndFrame();
-		//this_thread::sleep_for(chrono::milliseconds(100));
 	}
 
 	stars.clear();
-	//scene.RemoveAll();
 	bunny::MemoryTracker::DisplayInfo();
 
 	return 0;

@@ -1,7 +1,6 @@
 #pragma once
-#include "Renderer.h"
-#include "Core/Color.h"
-#include "Core/Vector2.h"
+#include "Core/Math/Color.h"
+#include "Core/Math/Vector2.h"
 
 namespace bunny {
 	struct ParticleData {
@@ -23,7 +22,7 @@ namespace bunny {
 		}
 
 		void Update(float dt);
-		void Draw(Renderer& renderer);
+		void Draw(class Renderer& renderer);
 		friend class ParticleSystem;
 	private:
 		ParticleData m_data;

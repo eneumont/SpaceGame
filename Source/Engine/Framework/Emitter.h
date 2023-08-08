@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Color.h"
+#include "Core/Math/Color.h"
 #include "Framework/Actor.h"
 
 namespace bunny {

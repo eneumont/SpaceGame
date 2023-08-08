@@ -3,8 +3,6 @@
 
 namespace bunny {
 	void Actor::Draw(bunny::Renderer& r) {
-		//m_model->Draw(r, m_transform);
-
 		for (auto& component : m_components) {
 			if (dynamic_cast<RenderComponent*>(component.get())) {
 				dynamic_cast<RenderComponent*>(component.get())->Draw(r);

@@ -1,9 +1,10 @@
 #pragma once
 #include "Core/Core.h"
-#include "Renderer.h"
 #include <vector>
 
 namespace bunny {
+	class Renderer;
+
 	class Model {
 	public:
 		Model() = default;

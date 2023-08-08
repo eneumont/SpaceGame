@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "Renderer.h"
 
 namespace bunny {
 	void Particle::Update(float dt) {
