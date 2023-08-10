@@ -1,5 +1,6 @@
 #pragma once
-#include "Core/Math/Vector2.h"
+#include "Vector2.h"
+#include "Matrix2x2.h"
 
 namespace bunny {
 	class Transform {
@@ -14,5 +15,12 @@ namespace bunny {
 			rotation{ r }, 
 			scale{ s } 
 		{}
+
+		mat2 GetMatrix() const {
+			mat2 ms = mat2::CreateScale(scale);
+			mat2 mr = mat2::CreateRotation(rotation);
+			
+			return ms * mr;
+		}
 	};
 }

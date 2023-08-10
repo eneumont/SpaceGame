@@ -8,6 +8,6 @@ namespace bunny {
 		void Update(float dt) override;
 		void Draw(class Renderer& r) override;
 
-		res_t<Model> m_texture;
+		res_t<Model> m_model;
 	};
 }
