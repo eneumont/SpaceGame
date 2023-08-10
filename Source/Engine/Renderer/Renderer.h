@@ -28,6 +28,7 @@ namespace bunny {
 		void DrawPoint(int x, int y);
 		void DrawPoint(float x, float y);
 		void DrawTexture(class Texture* texture, float x, float y, float angle = 0.0f);
+		void DrawTexture(class Texture* texture, const Transform& transform);
 
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }

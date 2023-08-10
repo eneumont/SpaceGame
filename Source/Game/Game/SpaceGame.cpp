@@ -49,8 +49,8 @@ void SpaceGame::Update(float dt) {
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components
-		std::unique_ptr<bunny::ModelRenderComponent> component = std::make_unique<bunny::ModelRenderComponent>();
-		component->m_model = bunny::g_rm.Get<bunny::Model>("good.txt");
+		std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
+		component->m_texture = bunny::g_rm.Get<bunny::Texture>("playership.png", bunny::g_r);
 		player->AddComponent(std::move(component));
 		auto physicsComponent = std::make_unique<bunny::EnginePhysicsComponent>();
 		physicsComponent->m_damping = 0.9f;

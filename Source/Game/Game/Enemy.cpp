@@ -32,7 +32,7 @@ void Enemy::Update(float dt) {
 	m_fireTimer -= dt;
 	if (m_fireTimer <= 0) {
 		m_fireTimer = m_fireRate;
-		bunny::Transform transform{ m_transform.position, m_transform.rotation, 3 };
+		bunny::Transform transform{ m_transform.position, m_transform.rotation, 2 };
 		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(300.0f, transform); //m_transform
 		weapon->m_tag = "Enemy";
 		std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();

@@ -45,7 +45,7 @@ void Player::Update(float dt) {
 		switch (m_toggle) {
 		case 1:
 		{
-			bunny::Transform transform1{ m_transform.position, m_transform.rotation, 9 };
+			bunny::Transform transform1{ m_transform.position, m_transform.rotation, 2 };
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
@@ -56,14 +56,14 @@ void Player::Update(float dt) {
 			break;
 		case 2:
 		{
-			bunny::Transform transform1{ m_transform.position, m_transform.rotation + bunny::DegreesToRadians(10), 9 };
+			bunny::Transform transform1{ m_transform.position, m_transform.rotation + bunny::DegreesToRadians(10), 2 };
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
 			m_scene->Add(std::move(weapon));
-			bunny::Transform transform2{ m_transform.position, m_transform.rotation - bunny::DegreesToRadians(10), 9 };
+			bunny::Transform transform2{ m_transform.position, m_transform.rotation - bunny::DegreesToRadians(10), 2 };
 			weapon = std::make_unique<Weapon>(400.0f, transform2); //m_transform
 			weapon->m_tag = "Player";
 			component = std::make_unique<bunny::SpriteComponent>();
@@ -74,7 +74,7 @@ void Player::Update(float dt) {
 			break;
 		case 3:
 		{
-			bunny::Transform transform1{ m_transform.position, m_transform.rotation, 20 };
+			bunny::Transform transform1{ m_transform.position, m_transform.rotation, 5 };
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
