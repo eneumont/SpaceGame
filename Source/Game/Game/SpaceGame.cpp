@@ -55,6 +55,10 @@ void SpaceGame::Update(float dt) {
 		auto physicsComponent = std::make_unique<bunny::EnginePhysicsComponent>();
 		physicsComponent->m_damping = 0.9f;
 		player->AddComponent(std::move(physicsComponent));
+		auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+		collisionComponent->m_radius = 30.0f;
+		player->AddComponent(std::move(collisionComponent));
+		player->Initialize();
 		m_scene->Add(std::move(player));
 	}
 		m_state = eState::Game;
@@ -73,6 +77,10 @@ void SpaceGame::Update(float dt) {
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			enemy->AddComponent(std::move(component));
+			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			enemy->AddComponent(std::move(collisionComponent));
+			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
 		}
 		break;

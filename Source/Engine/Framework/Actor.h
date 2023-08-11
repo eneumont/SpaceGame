@@ -3,14 +3,18 @@
 #include "Renderer/Model.h"
 #include <memory>
 #include "Components/Component.h"
+#include "Object.h"
 
 namespace bunny {
-	class Actor {
+	class Actor : public Object {
 	public:
 		Actor() = default;
 		Actor(const bunny::Transform& transform) :
 			m_transform{ transform }
 		{}
+
+		virtual bool Initialize() override;
+		virtual void Destroy() override;
 
 		virtual void Update(float dt);
 		virtual void Draw(bunny::Renderer& r);

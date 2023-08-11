@@ -7,6 +7,7 @@
 #include "Framework/Emitter.h"
 #include "Framework/Components/SpriteComponent.h"
 #include "Framework/Resource/ResourceManager.h"
+#include "Framework/Components/CollisionComponent.h"
 
 void Enemy::Update(float dt) {
 	Actor::Update(dt);
@@ -68,4 +69,20 @@ void Enemy::onCollision(Actor* actor) {
 		emitter->m_lifespan = 0.1f;
 		m_scene->Add(std::move(emitter));
 	}
+}
+
+bool Enemy::Initialize() {
+	Actor::Initialize();
+
+	auto collisionComponent = GetComponent<bunny::CollisionComponent>();
+
+	if (collisionComponent) {
+		auto renderComponent = GetComponent<bunny::RenderComponent>();
+		if (renderComponent) {
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = renderComponent->getRadius() * scale;
+		}
+	}
+
+	return true;
 }

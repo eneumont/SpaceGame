@@ -15,6 +15,20 @@ namespace bunny {
 		m_components.push_back(std::move(c));
 	}
 
+	bool Actor::Initialize() {
+		for (auto& component : m_components) {
+			component->Initialize();
+		}
+
+		return true;
+	}
+
+	void Actor::Destroy() {
+		for (auto& component : m_components) {
+			component->Destroy();
+		}
+	}
+
 	void Actor::Update(float dt) {
 		if (m_lifespan != -1.0f) {
 			m_lifespan -= dt;

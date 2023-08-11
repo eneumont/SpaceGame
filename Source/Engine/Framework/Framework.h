@@ -3,6 +3,7 @@
 #include "Emitter.h"
 #include "Game.h"
 #include "Scene.h"
+#include "Object.h"
 
 #include "Components/Component.h"
 #include "Components/EnginePhysicsComponent.h"
@@ -10,6 +11,8 @@
 #include "Components/PhysicsComponent.h"
 #include "Components/RenderComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/CollisionComponent.h"
+#include "Components/CircleCollisionComponent.h"
 
 #include "Resource/Resource.h"
 #include "Resource/ResourceManager.h"

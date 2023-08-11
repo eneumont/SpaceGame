@@ -1,5 +1,7 @@
 #include "Weapon.h"
 #include "Renderer/Renderer.h"
+#include "Framework/Components/CollisionComponent.h"
+#include "Framework/Components/RenderComponent.h"
 
 void Weapon::Update(float dt) {
 	Actor::Update(dt);
@@ -14,4 +16,20 @@ void Weapon::onCollision(Actor* actor) {
 	if (actor->m_tag != m_tag) {
 		m_lifespan = 0;
 	}
+}
+
+bool Weapon::Initialize() {
+	Actor::Initialize();
+
+	auto collisionComponent = GetComponent<bunny::CollisionComponent>();
+
+	if (collisionComponent) {
+		auto renderComponent = GetComponent<bunny::RenderComponent>();
+		if (renderComponent) {
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = renderComponent->getRadius() * scale;
+		}
+	}
+
+	return true;
 }

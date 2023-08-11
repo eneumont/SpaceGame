@@ -2,12 +2,25 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Weapon.h"
-#include "Framework/Scene.h"
+#include "Framework/Framework.h"
 #include "Game/SpaceGame.h"
-#include "Framework/Emitter.h"
-#include "Framework/Components/SpriteComponent.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Framework/Components/EnginePhysicsComponent.h"
+
+bool Player::Initialize() {
+	Actor::Initialize();
+
+	m_physics = GetComponent<bunny::PhysicsComponent>();
+	auto collisionComponent = GetComponent<bunny::CollisionComponent>();
+
+	if (collisionComponent) {
+		auto renderComponent = GetComponent<bunny::RenderComponent>();
+		if (renderComponent) { 
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = renderComponent->getRadius() * scale; 
+		}
+	}
+
+	return true;
+}
 
 void Player::Update(float dt) {
 	Actor::Update(dt);
@@ -34,8 +47,8 @@ void Player::Update(float dt) {
 
 	bunny::vec2 forward = bunny::vec2{ 0, -1 }.Rotate(m_transform.rotation);
 
-	auto physicsComponent = GetComponent<bunny::PhysicsComponent>();
-	physicsComponent->ApplyForce(forward * m_speed * thrust);
+	//auto physicsComponent = GetComponent<bunny::PhysicsComponent>();
+	m_physics->ApplyForce(forward * m_speed * thrust);
 
 	m_transform.position.x = bunny::Wrap(m_transform.position.x, (float)bunny::g_r.GetWidth());
 	m_transform.position.y = bunny::Wrap(m_transform.position.y, (float)bunny::g_r.GetHeight());
@@ -51,6 +64,10 @@ void Player::Update(float dt) {
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
+			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			weapon->AddComponent(std::move(collisionComponent));
+			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
 		}
 			break;
@@ -62,6 +79,10 @@ void Player::Update(float dt) {
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
+			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			weapon->AddComponent(std::move(collisionComponent));
+			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
 			bunny::Transform transform2{ m_transform.position, m_transform.rotation - bunny::DegreesToRadians(10), 2 };
 			weapon = std::make_unique<Weapon>(400.0f, transform2); //m_transform
@@ -69,6 +90,10 @@ void Player::Update(float dt) {
 			component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
+			collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			weapon->AddComponent(std::move(collisionComponent));
+			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
 		}
 			break;
@@ -80,6 +105,10 @@ void Player::Update(float dt) {
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
 			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
+			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			weapon->AddComponent(std::move(collisionComponent));
+			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
 		}
 			break;

@@ -7,6 +7,7 @@ namespace bunny {
 	public:
 		void Update(float dt) override;
 		void Draw(class Renderer& r) override;
+		virtual float getRadius() { return m_texture->GetSize().Length() * 0.5f; }
 
 		res_t<Texture> m_texture;
 	};
