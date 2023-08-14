@@ -5,9 +5,10 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Framework.h"
+#include "Framework/Resource/ResourceManager.h"
 
 bool SpaceGame::Initialize() {
-	m_font = bunny::g_rm.Get<bunny::Font>("orangejuice.ttf", 24);
+	m_font = GET_RESOURCE(bunny::Font, "orangejuice.ttf", 24);
 	m_gametimerText = std::make_unique<bunny::Text>(m_font);
 	m_text1 = std::make_unique<bunny::Text>(m_font);
 	m_text2 = std::make_unique<bunny::Text>(m_font);
@@ -49,8 +50,8 @@ void SpaceGame::Update(float dt) {
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components
-		std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-		component->m_texture = bunny::g_rm.Get<bunny::Texture>("playership.png", bunny::g_r);
+		auto component = bunny::Factory::Instance().Create<bunny::SpriteComponent>("SpriteComponent");//std::make_unique<bunny::SpriteComponent>();
+		component->m_texture = GET_RESOURCE(bunny::Texture, "playership.png", bunny::g_r);
 		player->AddComponent(std::move(component));
 		auto physicsComponent = std::make_unique<bunny::EnginePhysicsComponent>();
 		physicsComponent->m_damping = 0.9f;
@@ -75,7 +76,7 @@ void SpaceGame::Update(float dt) {
 			enemy->m_game = this;
 			//create components
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 			enemy->AddComponent(std::move(component));
 			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;

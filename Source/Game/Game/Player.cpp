@@ -4,6 +4,7 @@
 #include "Weapon.h"
 #include "Framework/Framework.h"
 #include "Game/SpaceGame.h"
+#include "Framework/Resource/ResourceManager.h"
 
 bool Player::Initialize() {
 	Actor::Initialize();
@@ -62,7 +63,7 @@ void Player::Update(float dt) {
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
 			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;
@@ -77,7 +78,7 @@ void Player::Update(float dt) {
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
 			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;
@@ -88,7 +89,7 @@ void Player::Update(float dt) {
 			weapon = std::make_unique<Weapon>(400.0f, transform2); //m_transform
 			weapon->m_tag = "Player";
 			component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
 			collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;
@@ -103,7 +104,7 @@ void Player::Update(float dt) {
 			std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
 			weapon->m_tag = "Player";
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 			weapon->AddComponent(std::move(component));
 			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;

@@ -4,10 +4,7 @@
 #include "Renderer/Renderer.h"
 #include "Player.h"
 #include "Game/SpaceGame.h"
-#include "Framework/Emitter.h"
-#include "Framework/Components/SpriteComponent.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Framework/Components/CollisionComponent.h"
+#include "Framework/Framework.h"
 
 void Enemy::Update(float dt) {
 	Actor::Update(dt);
@@ -37,8 +34,12 @@ void Enemy::Update(float dt) {
 		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(300.0f, transform); //m_transform
 		weapon->m_tag = "Enemy";
 		std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-		component->m_texture = bunny::g_rm.Get<bunny::Texture>("ship.png", bunny::g_r);
+		component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
 		weapon->AddComponent(std::move(component));
+		auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+		collisionComponent->m_radius = 30.0f;
+		weapon->AddComponent(std::move(collisionComponent));
+		weapon->Initialize();
 		m_scene->Add(std::move(weapon));
 	}
 }
