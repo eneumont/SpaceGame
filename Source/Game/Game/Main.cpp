@@ -48,6 +48,27 @@ int main(int argc, char* argv[]) {
 	bunny::seedRandom((unsigned int)time(nullptr));
 	bunny::setFilePath("Assets");
 
+	//rapidjson::Document document;
+	//bunny::Json::Load("json.txt", document);
+	//int i1;
+	//bunny::Json::Read(document, "integer1", i1);
+	//std::cout << i1 << std::endl;
+	//int i2;
+	//bunny::Json::Read(document, "integer2", i2);
+	//std::cout << i2 << std::endl;
+	//std::string str;
+	//bunny::Json::Read(document, "string", str);
+	//std::cout << str << std::endl;
+	//bool b;
+	//bunny::Json::Read(document, "boolean", b);
+	//std::cout << b << std::endl;
+	//float f;
+	//bunny::Json::Read(document, "float", f);
+	//std::cout << f << std::endl;
+	//bunny::vec2 v2;
+	//bunny::Json::Read(document, "vector2", v2);
+	//std::cout << v2 << std::endl;
+
 	bunny::g_r.Initialize();
 	bunny::g_r.CreateWindow("CSC196", 800, 600);
 	bunny::g_is.Initialize();

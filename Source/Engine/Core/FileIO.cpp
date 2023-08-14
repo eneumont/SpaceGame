@@ -42,7 +42,7 @@ namespace bunny {
 		stream.read(buffer.data(), size);
 		stream.close();
 
-		return false;
+		return true;
 	}
 
 	std::string getFileName(const std::filesystem::path& path) {

@@ -42,33 +42,8 @@ namespace bunny {
 		Vector3 Normalized() const { return *this / Length(); }
 		void Normalize() { *this /= Length(); }
 
-		/*float Angle() const { return std::atan2f(y, x); }
-		Vector3 Rotate(float radians) const;
-
-		static float SignedAngle(const Vector3& v1, const Vector3& v2);
-		static float Angle(const Vector3& v1, const Vector3& v2);*/
 		static float Dot(const Vector3& v1, const Vector3& v2);
 	};
-
-	/*inline Vector3 Vector3::Rotate(float radians) const {
-		float _x = x * std::cos(radians) - y * std::sin(radians);
-		float _y = x * std::sin(radians) + y * std::cos(radians);
-
-		return { _x, _y };
-	}*/
-
-	// get the unsigned angle in radians between the normalized v1 and normalized v2
-	/*inline float Vector3::Angle(const Vector3& v1, const Vector3& v2) {
-		return std::acos(Dot(v1, v2));
-	}*/
-
-	// get the signed counterclockwise angle in radians between v1 and v2
-	/*inline float Vector3::SignedAngle(const Vector3& v1, const Vector3& v2) {
-		float y = v1.x * v2.y - v1.y * v2.x;
-		float x = v1.x * v2.x + v1.y * v2.y;
-
-		return std::atan2(y, x);
-	}*/
 
 	// get the dot product beteen v1 and v2 https://www.falstad.com/dotproduct/
 	inline float Vector3::Dot(const Vector3& v1, const Vector3& v2) {
