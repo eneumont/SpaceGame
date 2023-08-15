@@ -3,6 +3,8 @@
 #include "Framework/Actor.h"
 
 namespace bunny {
+	CLASS_DEFINITION(SpriteComponent)
+
 	void SpriteComponent::Update(float dt) {
 	
 	}

@@ -44,7 +44,8 @@ public:
 };
 
 int main(int argc, char* argv[]) {
-	bunny::Factory::Instance().Register<bunny::SpriteComponent>("SpriteComponent");
+	//bunny::Factory::Instance().Register<bunny::SpriteComponent>("SpriteComponent");
+	//bunny::Factory::Instance().Register<bunny::CircleCollisionComponent>("CircleCollisionComponent");
 
 	bunny::MemoryTracker::Initialize();
 	bunny::seedRandom((unsigned int)time(nullptr));

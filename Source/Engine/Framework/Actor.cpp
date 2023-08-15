@@ -2,6 +2,8 @@
 #include "Framework/Components/RenderComponent.h"
 
 namespace bunny {
+	CLASS_DEFINITION(Actor)
+
 	void Actor::Draw(bunny::Renderer& r) {
 		for (auto& component : m_components) {
 			if (dynamic_cast<RenderComponent*>(component.get())) {
@@ -38,5 +40,9 @@ namespace bunny {
 		for (auto& component : m_components) {
 			component->Update(dt);
 		}
+	}
+
+	bool Actor::Read(const rapidjson::Value& value) {
+		return true;
 	}
 }

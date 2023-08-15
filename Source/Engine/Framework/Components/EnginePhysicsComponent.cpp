@@ -1,7 +1,9 @@
 #include "EnginePhysicsComponent.h"
 #include "Framework/Actor.h"
 
-namespace bunny{
+namespace bunny {
+	CLASS_DEFINITION(EnginePhysicsComponent)
+
 	void EnginePhysicsComponent::Update(float dt) {
 		m_owner->m_transform.position += m_velocity * dt;
 		m_velocity *= std::pow(1 - m_damping, dt);

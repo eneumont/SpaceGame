@@ -50,13 +50,13 @@ void SpaceGame::Update(float dt) {
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components
-		auto component = bunny::Factory::Instance().Create<bunny::SpriteComponent>("SpriteComponent");//std::make_unique<bunny::SpriteComponent>();
+		auto component = CREATE_CLASS(SpriteComponent);
 		component->m_texture = GET_RESOURCE(bunny::Texture, "playership.png", bunny::g_r);
 		player->AddComponent(std::move(component));
-		auto physicsComponent = std::make_unique<bunny::EnginePhysicsComponent>();
+		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);
 		physicsComponent->m_damping = 0.9f;
 		player->AddComponent(std::move(physicsComponent));
-		auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);
 		collisionComponent->m_radius = 30.0f;
 		player->AddComponent(std::move(collisionComponent));
 		player->Initialize();

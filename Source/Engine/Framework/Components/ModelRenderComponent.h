@@ -5,6 +5,8 @@
 namespace bunny {
 	class ModelRenderComponent : public RenderComponent {
 	public:
+		CLASS_DECLARATION(ModelRenderComponent)
+
 		void Update(float dt) override;
 		void Draw(class Renderer& r) override;
 		virtual float getRadius() override { return m_model->getRadius(); }
