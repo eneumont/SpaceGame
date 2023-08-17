@@ -10,10 +10,14 @@ namespace bunny {
 	public:
 		Scene() = default;
 
+		bool Initialize();
 		void Update(float dt);
 		void Draw(Renderer& r);
 		void Add(std::unique_ptr<Actor> a);
 		void RemoveAll();
+
+		bool Load(const std::string& filename);
+		void Read(const json_t& value);
 
 		template<typename T>
 		T* GetActor();

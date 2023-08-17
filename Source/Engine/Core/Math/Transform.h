@@ -2,6 +2,7 @@
 #include "Vector2.h"
 #include "Matrix2x2.h"
 #include "Matrix3x3.h"
+#include "Core/Json.h"
 
 namespace bunny {
 	class Transform {
@@ -24,5 +25,7 @@ namespace bunny {
 			
 			return mt * ms * mr;
 		}
+
+		void Read(const json_t& value);
 	};
 }

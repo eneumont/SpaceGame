@@ -1,0 +1,5 @@
+Info: Factory.h(44) Class registered: SpriteComponent
+Info: Factory.h(44) Class registered: ModelRenderComponent
+Info: Factory.h(44) Class registered: EnginePhysicsComponent
+Info: Factory.h(44) Class registered: CircleCollisionComponent
+Info: Factory.h(44) Class registered: Actor

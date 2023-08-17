@@ -6,6 +6,7 @@
 #include <string>
 
 #define CREATE_CLASS(classname) bunny::Factory::Instance().Create<bunny::classname>(#classname);
+#define CREATE_CLASS_BASE(classbase, classname) bunny::Factory::Instance().Create<bunny::classbase>(classname);
 
 namespace bunny {
 	class CreatorBase {

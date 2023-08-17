@@ -18,6 +18,8 @@ bool SpaceGame::Initialize() {
 	bunny::g_as.AddAudio("melody", "melody.wav");
 
 	m_scene = std::make_unique<bunny::Scene>();
+	m_scene->Load("scene.json");
+	m_scene->Initialize();
 
 	return true;
 }
@@ -47,7 +49,7 @@ void SpaceGame::Update(float dt) {
 	{
 		// create player
 		auto player = std::make_unique<Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 3 });
-		player->m_tag = "Player";
+		player->tag = "Player";
 		player->m_game = this;
 		//create components
 		auto component = CREATE_CLASS(SpriteComponent);
@@ -72,7 +74,7 @@ void SpaceGame::Update(float dt) {
 		if (m_spawnTimer >= m_spawnTime) {
 			m_spawnTimer = 0;
 			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(bunny::randomf(75.0f, 150.0f), bunny::PI, bunny::Transform(((float)bunny::random(800), (float)bunny::random(600)), bunny::randomf(bunny::TwoPI), 2.0f));
-			enemy->m_tag = "Enemy";
+			enemy->tag = "Enemy";
 			enemy->m_game = this;
 			//create components
 			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
@@ -119,6 +121,8 @@ void SpaceGame::Update(float dt) {
 }
 
 void SpaceGame::Draw(bunny::Renderer& r) {
+	m_scene->Draw(r);
+
 	switch (m_state) {
 	case eState::Title:
 		m_text1->Draw(r, 300, 0);
@@ -137,6 +141,4 @@ void SpaceGame::Draw(bunny::Renderer& r) {
 	default:
 		break;
 	}
-
-	m_scene->Draw(r);
 }

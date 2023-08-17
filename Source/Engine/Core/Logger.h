@@ -1,13 +1,15 @@
 #pragma once
+#include "Framework/Singleton.h"
 #include <string>
 #include <cassert>
 #include <fstream>
+#include <iostream>
 
 #ifdef _DEBUG
-#define INFO_LOG(message) { if (bunny::g_l.log(bunny::LogLevel::Info, __FILE__, __LINE__)) { bunny::g_l << message << "\n"; } }
-#define WARNING_LOG(message) { if (bunny::g_l.log(bunny::LogLevel::Warning, __FILE__, __LINE__)) { bunny::g_l << message << "\n"; } }
-#define ERROR_LOG(message) { if (bunny::g_l.log(bunny::LogLevel::Error, __FILE__, __LINE__)) { bunny::g_l << message << "\n"; } }
-#define ASSERT_LOG(condition, message) { if (!condition && bunny::g_l.log(bunny::LogLevel::Assert, __FILE__, __LINE__)) { bunny::g_l << message << "\n"; } assert(condition); }
+#define INFO_LOG(message) { if (bunny::Logger::Instance().log(bunny::LogLevel::Info, __FILE__, __LINE__)) { bunny::Logger::Instance() << message << "\n"; } }
+#define WARNING_LOG(message) { if (bunny::Logger::Instance().log(bunny::LogLevel::Warning, __FILE__, __LINE__)) { bunny::Logger::Instance() << message << "\n"; } }
+#define ERROR_LOG(message) { if (bunny::Logger::Instance().log(bunny::LogLevel::Error, __FILE__, __LINE__)) { bunny::Logger::Instance() << message << "\n"; } }
+#define ASSERT_LOG(condition, message) { if (!condition && bunny::Logger::Instance().log(bunny::LogLevel::Assert, __FILE__, __LINE__)) { bunny::Logger::Instance() << message << "\n"; } assert(condition); }
 #else
 #define INFO_LOG(message) {}
 #define WARNING_LOG(message) {}
@@ -23,9 +25,9 @@ namespace bunny {
 		Assert
 	};
 
-	class Logger {
+	class Logger : public Singleton<Logger>	 {
 	public:
-		Logger(LogLevel ll, std::ostream* o, const std::string& f = "") :
+		Logger(LogLevel ll = LogLevel::Info, std::ostream* o = &std::cout, const std::string& f = "log.txt") :
 			m_loglevel{ ll },
 			m_ostream{ o }
 		{
@@ -41,8 +43,6 @@ namespace bunny {
 		std::ostream* m_ostream = nullptr;
 		std::ofstream m_fstream;
 	};
-
-	extern Logger g_l;
 
 	template<typename T>
 	inline Logger& Logger::operator<<(T value) {

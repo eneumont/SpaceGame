@@ -3,8 +3,6 @@
 #include <iostream>
 
 namespace bunny {
-	Logger g_l(LogLevel::Info, &std::cout, "Log.txt");
-
 	bool Logger::log(LogLevel ll, const std::string& filename, int line) {
 		if (ll < m_loglevel) {
 			return false;

@@ -5,7 +5,7 @@
 
 #define CLASS_DECLARATION(classname) \
 	virtual const char* getClassName() { return #classname; } \
-	bool Read(const rapidjson::Value& value); \
+	virtual void Read(const json_t& value); \
 	class Register { \
 	public: \
 		Register() { \
@@ -30,6 +30,5 @@ namespace bunny {
 		virtual void Destroy() {}
 	protected:
 		std::string name;
-
 	};
 }
