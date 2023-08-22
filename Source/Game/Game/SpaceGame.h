@@ -1,8 +1,9 @@
 #pragma once
 #include "Framework/Game.h"
 #include "Renderer/Text.h"
+#include "Framework/Event/EventManager.h"
 
-class SpaceGame : public bunny::Game {
+class SpaceGame : public bunny::Game, bunny::IEventListener {
 public:
 	enum class eState {
 		Title,
@@ -20,7 +21,9 @@ public:
 	virtual void Update(float dt) override;
 	virtual void Draw(bunny::Renderer& r) override;
 
-	void SetState(eState state) { m_state = state; }
+	void SetState(eState state) { m_state = state; };
+	void onAddPoints(const bunny::Event& event);
+	void onPlayerDead(const bunny::Event& event);
 private:
 	eState m_state = eState::Title;
 	float m_spawnTimer = 0;

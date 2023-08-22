@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Game/SpaceGame.h"
 #include "Framework/Framework.h"
+#include "Framework/Event/EventManager.h"
 
 void Enemy::Update(float dt) {
 	Actor::Update(dt);
@@ -49,7 +50,8 @@ void Enemy::onCollision(Actor* actor) {
 	//could use != m_tag or == "Player"
 
 	if (actor->tag == "Player") {
-		m_game->AddPoints(100);
+		bunny::EventManager::Instance().DispatchEvent("AddPoints", 100);
+		//m_game->AddPoints(100);
 		destroyed = true;
 
 		//create explosion

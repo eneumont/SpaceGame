@@ -5,7 +5,6 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Framework.h"
-#include "Framework/Resource/ResourceManager.h"
 
 bool SpaceGame::Initialize() {
 	m_font = GET_RESOURCE(bunny::Font, "orangejuice.ttf", 24);
@@ -20,6 +19,9 @@ bool SpaceGame::Initialize() {
 	m_scene = std::make_unique<bunny::Scene>();
 	m_scene->Load("scene.json");
 	m_scene->Initialize();
+
+	EVENT_SUBSCRIBE("onAddPoints", SpaceGame::onAddPoints);
+	EVENT_SUBSCRIBE("onPlayerDead", SpaceGame::onPlayerDead);
 
 	return true;
 }
@@ -142,4 +144,13 @@ void SpaceGame::Draw(bunny::Renderer& r) {
 	default:
 		break;
 	}
+}
+
+void SpaceGame::onAddPoints(const bunny::Event& event) {
+	m_score += std::get<int>(event.data);
+}
+
+void SpaceGame::onPlayerDead(const bunny::Event& event) {
+	m_lives--;
+	m_state = eState::PlayerDeadStart;
 }

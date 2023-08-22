@@ -6,3 +6,5 @@ Info: Factory.h(58) Class registered: EnginePhysicsComponent
 Info: Factory.h(58) Class registered: CircleCollisionComponent
 Info: Factory.h(58) Class registered: Actor
 Info: Factory.h(65) Prototype Class registered: PlayerBullet
+Info: EventManager.cpp(15) Event subscribed: onAddPoints
+Info: EventManager.cpp(15) Event subscribed: onPlayerDead

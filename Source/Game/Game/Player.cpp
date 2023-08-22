@@ -63,17 +63,6 @@ void Player::Update(float dt) {
 			weapon->transform = { transform.position, transform.rotation, 2 };
 			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
-			//bunny::Transform transform1{ transform.position, transform.rotation, 2 };
-			//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
-			//weapon->tag = "Player";
-			//std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
-			//weapon->AddComponent(std::move(component));
-			//auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 30.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
 		}
 			break;
 		case 2:
@@ -86,28 +75,6 @@ void Player::Update(float dt) {
 			weapon->transform = { transform.position, transform.rotation - bunny::DegreesToRadians(10), 2 };
 			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
-			//bunny::Transform transform1{ transform.position, transform.rotation + bunny::DegreesToRadians(10), 2 };
-			//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
-			//weapon->tag = "Player";
-			//std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
-			//weapon->AddComponent(std::move(component));
-			//auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 30.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
-			//bunny::Transform transform2{ transform.position, transform.rotation - bunny::DegreesToRadians(10), 2 };
-			//weapon = std::make_unique<Weapon>(400.0f, transform2); //m_transform
-			//weapon->tag = "Player";
-			//component = std::make_unique<bunny::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
-			//weapon->AddComponent(std::move(component));
-			//collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 30.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
 		}
 			break;
 		case 3:
@@ -116,17 +83,6 @@ void Player::Update(float dt) {
 			weapon->transform = { transform.position, transform.rotation, 5 };
 			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
-			//bunny::Transform transform1{ transform.position, transform.rotation, 5 };
-			//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); //m_transform
-			//weapon->tag = "Player";
-			//std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
-			//weapon->AddComponent(std::move(component));
-			//auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 30.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
 		}
 			break;
 		}
@@ -153,8 +109,7 @@ void Player::onCollision(Actor* actor) {
 		m_health--;
 		if (m_health == 0) {
 			destroyed = true;
-			m_game->SetLives(m_game->GetLives() - 1);
-			dynamic_cast<SpaceGame*>(m_game)->SetState(SpaceGame::eState::PlayerDeadStart);
+			bunny::EventManager::Instance().DispatchEvent("onPlayerDead", 0);
 			//create explosion
 			bunny::EmitterData data;
 			data.burst = true;
