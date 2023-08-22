@@ -14,6 +14,7 @@ namespace bunny {
 		Actor(const bunny::Transform& transform) :
 			transform{ transform }
 		{}
+		Actor(const Actor& other);
 
 		virtual bool Initialize() override;
 		virtual void Destroy() override;
@@ -36,9 +37,11 @@ namespace bunny {
 		bunny::Transform transform;
 		std::string tag;
 		float lifespan = -1.0f;
+		bool destroyed = false;
+		bool persistent = false;
+		bool prototype = false;
 	protected:
 		std::vector<std::unique_ptr<Component>> components;
-		bool destroyed = false;
 	};
 
 	template<typename T>

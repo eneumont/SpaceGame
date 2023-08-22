@@ -3,7 +3,11 @@
 #include "Framework/Framework.h"
 
 namespace bunny {
+	CLASS_DEFINITION(Weapon);
+
 	void Weapon::Update(float dt) {
+		Actor::Update(dt);
+
 		bunny::vec2 forward = bunny::vec2{ 0, -1 }.Rotate(transform.rotation);
 		transform.position += forward * speed * kiko::g_time.GetDelta();
 		transform.position.x = bunny::Wrap(transform.position.x, (float)bunny::g_r.GetWidth());
@@ -17,6 +21,8 @@ namespace bunny {
 	}
 
 	bool Weapon::Initialize() {
+		Actor::Initialize();
+
 		auto collisionComponent = GetComponent<bunny::CollisionComponent>();
 
 		if (collisionComponent) {
@@ -31,6 +37,7 @@ namespace bunny {
 	}
 
 	void Weapon::Read(const json_t& value) {
+		Actor::Read(value);
 		READ_DATA(value, speed);
 	}
 }

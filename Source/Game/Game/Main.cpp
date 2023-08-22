@@ -82,6 +82,7 @@ int main(int argc, char* argv[]) {
 
 		bunny::g_r.SetColor(0, 0, 0, 0);
 		bunny::g_r.BeginFrame();
+		game->Draw(bunny::g_r);
 
 		// draw
 		for (auto& star : stars) {
@@ -92,7 +93,6 @@ int main(int argc, char* argv[]) {
 		}
 
 		bunny::g_ps.Draw(bunny::g_r);
-		game->Draw(bunny::g_r);
 
 		bunny::g_r.EndFrame();
 	}

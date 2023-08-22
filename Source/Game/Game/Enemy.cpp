@@ -65,8 +65,8 @@ void Enemy::onCollision(Actor* actor) {
 		data.speedMax = 250;
 		data.damping = 0.5f;
 		data.color = bunny::Color{ 1, 0, 0, 1 };
-		bunny::Transform transform{ { transform.position }, 0, 1 };
-		auto emitter = std::make_unique<bunny::Emitter>(transform, data);
+		bunny::Transform transformer{ { transform.position }, 0, 1 };
+		auto emitter = std::make_unique<bunny::Emitter>(transformer, data);
 		emitter->lifespan = 0.1f;
 		m_scene->Add(std::move(emitter));
 	}

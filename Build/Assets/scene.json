@@ -1,8 +1,9 @@
 {
-	"actors":[
+	"actors": [
 		{
-			"type":"Actor",
-			"name":"Background",
+			"type": "Actor",
+			"name": "Background",
+			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 1,
@@ -10,8 +11,48 @@
 			},
 			"components": [
 				{
-					"type":"SpriteComponent",
+					"type": "SpriteComponent",
 					"textureName": "bunny.jpg"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 450, 0 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "orangejuice.ttf",
+					"fontSize": 24,
+					"text": "ASTEROIDZZZ"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "PlayerBullet",
+			"prototype": true,
+			"tag": "Player",
+			"lifespan": 2,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 200,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "ship.png"
+				},
+				{
+					"type": "CircleCollisionComponent"
 				}
 			]
 		}

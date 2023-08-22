@@ -23,4 +23,19 @@ namespace bunny {
 		SDL_Rect rect{ x, y, width, height };
 		SDL_RenderCopy(renderer.m_renderer, m_texture, NULL, &rect);
 	}
+
+	void Text::Draw(Renderer& renderer, const Transform& transform) {
+		int width, height;
+		SDL_QueryTexture(m_texture, nullptr, nullptr, &width, &height);
+		mat3 mx = transform.GetMatrix();
+		vec2 position = mx.getTranslation();
+		vec2 size = vec2{ width, height } *mx.getScale();
+		SDL_Rect dest;
+		dest.x = (int)(position.x - (0.5 * position.x));
+		dest.y = (int)(position.y - (0.5 * position.y));
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+		SDL_RenderCopyEx(renderer.m_renderer, m_texture, nullptr, &dest, (RadiansToDegrees)(mx.getRotation()), nullptr, SDL_FLIP_NONE);
+	}
+
 }

@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 
-#define GET_RESOURCE(type, filename, ...) bunny::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__);
+#define GET_RESOURCE(type, filename, ...) bunny::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__)
 
 namespace bunny {
 	class ResourceManager : public Singleton<ResourceManager> {

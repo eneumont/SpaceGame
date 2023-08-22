@@ -7,7 +7,7 @@ namespace bunny {
 		auto iter = m_actors.begin();
 
 		while (iter != m_actors.end()) {
-			(*iter)->Update(dt);
+			if ((*iter)->active) (*iter)->Update(dt);
 			((*iter)->destroyed) ? iter = m_actors.erase(iter) : iter++;
 		}
 
@@ -31,7 +31,7 @@ namespace bunny {
 
 	void Scene::Draw(Renderer& r) {
 		for (auto& a : m_actors) {
-			a->Draw(r);
+			if (a->active) a->Draw(r);
 		}
 	}
 
@@ -40,8 +40,11 @@ namespace bunny {
 		m_actors.push_back(std::move(a));
 	}
 
-	void Scene::RemoveAll() {
-		m_actors.clear();
+	void Scene::RemoveAll(bool force) {
+		auto iter = m_actors.begin();
+		while (iter != m_actors.end()) {
+			(force || !(*iter)->persistent) ? iter = m_actors.erase(iter) : iter++;
+		}
 	}
 
 	bool Scene::Load(const std::string& filename) {
@@ -64,7 +67,13 @@ namespace bunny {
 
 				auto actor = CREATE_CLASS_BASE(Actor, type);
 				actor->Read(actorValue);
-				Add(std::move(actor));
+
+				if (actor->prototype) {
+					std::string name = actor->name;
+					Factory::Instance().RegisterPrototype(name, std::move(actor));
+				} else {
+					Add(std::move(actor));
+				}
 			}
 		}
 	}

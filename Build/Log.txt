@@ -1,5 +1,8 @@
-Info: Factory.h(44) Class registered: SpriteComponent
-Info: Factory.h(44) Class registered: ModelRenderComponent
-Info: Factory.h(44) Class registered: EnginePhysicsComponent
-Info: Factory.h(44) Class registered: CircleCollisionComponent
-Info: Factory.h(44) Class registered: Actor
+Info: Factory.h(58) Class registered: Weapon
+Info: Factory.h(58) Class registered: TextRenderComponent
+Info: Factory.h(58) Class registered: SpriteComponent
+Info: Factory.h(58) Class registered: ModelRenderComponent
+Info: Factory.h(58) Class registered: EnginePhysicsComponent
+Info: Factory.h(58) Class registered: CircleCollisionComponent
+Info: Factory.h(58) Class registered: Actor
+Info: Factory.h(65) Prototype Class registered: PlayerBullet

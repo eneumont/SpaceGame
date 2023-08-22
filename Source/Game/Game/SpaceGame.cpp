@@ -31,17 +31,19 @@ void SpaceGame::Shutdown() {
 void SpaceGame::Update(float dt) {
 	switch (m_state) {
 	case SpaceGame::eState::Title:
-		m_text1->Create(bunny::g_r, "Azteroids", bunny::Color{ 1, 1, 1, 1 });
-		m_text2->Create(bunny::g_r, "Try to beat the highscore!(X to toggle weapon, and Hold T to slow time!)", bunny::Color{ 1, 1, 1, 1 });
-		m_text3->Create(bunny::g_r, "High Score: " + std::to_string(m_highscore), bunny::Color{1, 1, 1, 1});
+		m_scene->GetActorByName("Title")->active = true;
+		m_text1->Create(bunny::g_r, "Try to beat the highscore!(X to toggle weapon, and Hold T to slow time!)", bunny::Color{ 1, 1, 1, 1 });
+		m_text2->Create(bunny::g_r, "High Score: " + std::to_string(m_highscore), bunny::Color{1, 1, 1, 1});
 		if (bunny::g_is.GetKeyDown(SDL_SCANCODE_SPACE)) {
 			m_state = eState::StartGame;
+			//m_scene->GetActorByName("Background")->active;
 		}
 		break;
 	case SpaceGame::eState::StartGame:
 		m_score = 0;
 		m_lives = 3;
 		bunny::g_as.PlayOneShot("melody", true);
+		m_scene->GetActorByName("Title")->active = false;
 		m_state = eState::StartLevel;
 		break;
 	case SpaceGame::eState::StartLevel: 
@@ -125,9 +127,8 @@ void SpaceGame::Draw(bunny::Renderer& r) {
 
 	switch (m_state) {
 	case eState::Title:
-		m_text1->Draw(r, 300, 0);
-		m_text2->Draw(r, 25, 200);
-		m_text3->Draw(r, 275, 400);
+		m_text1->Draw(r, 25, 200);
+		m_text2->Draw(r, 275, 400);
 		break;
 	case eState::Game:
 		m_text1->Draw(r, 100, 0);
