@@ -12,6 +12,8 @@
 #include <array>
 #include <map>
 #include "Framework/Framework.h"
+#include "Physics/PhysicsSystem.h"
+#include <functional>
 
 using namespace std;
 using vec2 = bunny::Vector2;
@@ -38,7 +40,7 @@ public:
 	void Draw(bunny::Renderer& r) {
 		r.DrawPoint(m_pos.x, m_pos.y);
 	}
-public:
+
 	bunny::vec2 m_pos;
 	bunny::vec2 m_vel;
 };
@@ -52,6 +54,7 @@ int main(int argc, char* argv[]) {
 	bunny::g_r.CreateWindow("CSC196", 800, 600);
 	bunny::g_is.Initialize();
 	bunny::g_as.Initialize();
+	bunny::PhysicsSystem::Instance().Initialize();
 
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
