@@ -3,23 +3,28 @@
 #include "Weapon.h"
 #include "Framework/Components/PhysicsComponent.h"
 
-class Player : public bunny::Actor {
-public:
-	Player(float speed, float turnRate, const bunny::Transform& transform) :
-		Actor{ transform },
-		m_speed{ speed },
-		m_turnRate{ turnRate }
-	{}
+namespace bunny {
+	class Player : public Actor {
+	public:
+		CLASS_DECLARATION(Player)
 
-	bool Initialize() override;
-	void Update(float dt) override;
-	void onCollision(Actor* actor) override;
+		/*Player() = default;
+		Player(float speed, float turnRate, const Transform& transform) :
+			Actor{ transform },
+			m_speed{ speed },
+			m_turnRate{ turnRate }
+		{}*/
 
-	float m_health = 3;
-private:
-	float m_speed = 0;
-	float m_turnRate = 0;
-	int m_toggle = 1;
+		bool Initialize() override;
+		void Update(float dt) override;
+		void onCollision(Actor* actor) override;
 
-	bunny::PhysicsComponent* m_physics = nullptr;
-};
+		float m_health = 3;
+	private:
+		float m_speed = 0;
+		float m_turnRate = 0;
+		int m_toggle = 1;
+
+		PhysicsComponent* m_physics = nullptr;
+	};
+}

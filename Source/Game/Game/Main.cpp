@@ -76,6 +76,7 @@ int main(int argc, char* argv[]) {
 		bunny::g_as.Update();
 		bunny::g_is.Update();
 		bunny::g_ps.Update(kiko::g_time.GetDelta());
+		bunny::PhysicsSystem::Instance().Update(kiko::g_time.GetDelta());
 
 		if (bunny::g_is.GetKeyDown(SDL_SCANCODE_SPACE) && !bunny::g_is.GetPreviousKeyDown(SDL_SCANCODE_SPACE)) {
 			bunny::g_as.PlayOneShot("hit");

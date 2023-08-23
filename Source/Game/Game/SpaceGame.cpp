@@ -51,22 +51,26 @@ void SpaceGame::Update(float dt) {
 	case SpaceGame::eState::StartLevel: 
 		m_scene->RemoveAll();
 	{
-		// create player
-		auto player = std::make_unique<Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 3 });
-		player->tag = "Player";
-		player->m_game = this;
-		//create components
-		auto component = CREATE_CLASS(SpriteComponent);
-		component->m_texture = GET_RESOURCE(bunny::Texture, "playership.png", bunny::g_r);
-		player->AddComponent(std::move(component));
-		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);
-		physicsComponent->m_damping = 0.9f;
-		player->AddComponent(std::move(physicsComponent));
-		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);
-		collisionComponent->m_radius = 30.0f;
-		player->AddComponent(std::move(collisionComponent));
+		auto player = INSTANTIATE(Player, "Player");
 		player->Initialize();
-		m_scene->Add(std::move(player));
+		m_scene->Add(std::move(player));		
+
+		// create player
+		//auto player = std::make_unique<bunny::Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 3 });
+		//player->tag = "Player";
+		//player->m_game = this;
+		//create components
+		//auto component = CREATE_CLASS(SpriteComponent);
+		//component->m_texture = GET_RESOURCE(bunny::Texture, "playership.png", bunny::g_r);
+		//player->AddComponent(std::move(component));
+		//auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);
+		//physicsComponent->m_damping = 0.9f;
+		//player->AddComponent(std::move(physicsComponent));
+		//auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);
+		//collisionComponent->m_radius = 30.0f;
+		//player->AddComponent(std::move(collisionComponent));
+		//player->Initialize();
+		//m_scene->Add(std::move(player));
 	}
 		m_state = eState::Game;
 		break;
@@ -77,18 +81,22 @@ void SpaceGame::Update(float dt) {
 		m_spawnTimer += dt;
 		if (m_spawnTimer >= m_spawnTime) {
 			m_spawnTimer = 0;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(bunny::randomf(75.0f, 150.0f), bunny::PI, bunny::Transform(((float)bunny::random(800), (float)bunny::random(600)), bunny::randomf(bunny::TwoPI), 2.0f));
-			enemy->tag = "Enemy";
-			enemy->m_game = this;
-			//create components
-			std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
-			component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
-			enemy->AddComponent(std::move(component));
-			auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
-			collisionComponent->m_radius = 30.0f;
-			enemy->AddComponent(std::move(collisionComponent));
+			auto enemy = INSTANTIATE(Enemy, "Enemy");
 			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
+
+			//std::unique_ptr<bunny::Enemy> enemy = std::make_unique<bunny::Enemy>(bunny::randomf(75.0f, 150.0f), bunny::PI, bunny::Transform(((float)bunny::random(800), (float)bunny::random(600)), bunny::randomf(bunny::TwoPI), 2.0f));
+			//enemy->tag = "Enemy";
+			//enemy->m_game = this;
+			//create components
+			//std::unique_ptr<bunny::SpriteComponent> component = std::make_unique<bunny::SpriteComponent>();
+			//component->m_texture = GET_RESOURCE(bunny::Texture, "ship.png", bunny::g_r);
+			//enemy->AddComponent(std::move(component));
+			//auto collisionComponent = std::make_unique<bunny::CircleCollisionComponent>();
+			//collisionComponent->m_radius = 30.0f;
+			//enemy->AddComponent(std::move(collisionComponent));
+			//enemy->Initialize();
+			//m_scene->Add(std::move(enemy));
 		}
 		break;
 	case eState::PlayerDeadStart:

@@ -4,7 +4,7 @@
 namespace bunny {
 	class CollisionComponent : public Component {
 	public:
-		virtual bool checkCollision(CollisionComponent* collision) = 0;
+		virtual bool checkCollision(CollisionComponent* collision) { return true; }
 
 		float m_radius = 0;
 	};
