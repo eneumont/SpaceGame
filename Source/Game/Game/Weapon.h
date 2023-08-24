@@ -9,7 +9,6 @@ namespace bunny {
 		bool Initialize() override;
 		void Update(float dt) override;
 		void onCollision(Actor* actor);
-		//void Read(const json_t& value);
 	private:
 		float speed = 0;
 	};

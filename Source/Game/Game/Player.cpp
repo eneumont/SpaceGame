@@ -138,6 +138,6 @@ namespace bunny {
 	void Player::Read(const json_t& value) {
 		Actor::Read(value);
 		READ_NAME_DATA(value, "speed", m_speed);
+		READ_NAME_DATA(value, "turnRate", m_turnRate);
 	}
-
 }

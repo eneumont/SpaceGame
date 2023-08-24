@@ -92,6 +92,8 @@ namespace bunny {
 	void Enemy::Read(const json_t& value) {
 		Actor::Read(value);
 		READ_NAME_DATA(value, "speed", m_speed);
+		READ_NAME_DATA(value, "turnRate", m_turnRate);
+		READ_NAME_DATA(value, "fireRate", m_fireRate);
+		READ_NAME_DATA(value, "fireTimer", m_fireTimer);
 	}
-
 }

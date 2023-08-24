@@ -52,6 +52,7 @@ void SpaceGame::Update(float dt) {
 		m_scene->RemoveAll();
 	{
 		auto player = INSTANTIATE(Player, "Player");
+		player->transform = bunny::Transform{ { 400, 300 }, 0, 3 };
 		player->Initialize();
 		m_scene->Add(std::move(player));		
 
@@ -82,6 +83,7 @@ void SpaceGame::Update(float dt) {
 		if (m_spawnTimer >= m_spawnTime) {
 			m_spawnTimer = 0;
 			auto enemy = INSTANTIATE(Enemy, "Enemy");
+			enemy->transform = bunny::Transform{ { bunny::random(800), bunny::random(600) }, bunny::randomf(bunny::TwoPI), 2 };
 			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
 
