@@ -30,9 +30,6 @@ int main(int argc, char* argv[]) {
 	unique_ptr<Platformer> game = make_unique<Platformer>();
 	game->Initialize();
 
-	bunny::vec2 v{ 5,5 };
-	v.Normalize();
-
 	//game loop
 	bool quit = false;
 	while (!quit) {
@@ -42,15 +39,11 @@ int main(int argc, char* argv[]) {
 		bunny::g_ps.Update(kiko::g_time.GetDelta());
 		bunny::PhysicsSystem::Instance().Update(kiko::g_time.GetDelta());
 
-		if (bunny::g_is.GetKeyDown(SDL_SCANCODE_SPACE) && !bunny::g_is.GetPreviousKeyDown(SDL_SCANCODE_SPACE)) {
-			bunny::g_as.PlayOneShot("hit");
-		}
-
-		//game->Update(kiko::g_time.GetDelta());
+		game->Update(kiko::g_time.GetDelta());
 
 		bunny::g_r.SetColor(0, 0, 0, 0);
 		bunny::g_r.BeginFrame();
-		//game->Draw(bunny::g_r);
+		game->Draw(bunny::g_r);
 
 		// draw
 		bunny::g_ps.Draw(bunny::g_r);

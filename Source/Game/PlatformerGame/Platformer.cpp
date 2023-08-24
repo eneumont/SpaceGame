@@ -5,15 +5,12 @@
 #include "Framework/Framework.h"
 
 bool Platformer::Initialize() {
-	bunny::g_as.AddAudio("hit", "hit.wav");
-	bunny::g_as.AddAudio("melody", "melody.wav");
+	bunny::g_as.AddAudio("hit", "Audio/hit.wav");
+	bunny::g_as.AddAudio("melody", "Audio/melody.wav");
 
 	m_scene = std::make_unique<bunny::Scene>();
 	m_scene->Load("Scenes/title.json");
 	m_scene->Initialize();
-
-	EVENT_SUBSCRIBE("onAddPoints", SpaceGame::onAddPoints);
-	EVENT_SUBSCRIBE("onPlayerDead", SpaceGame::onPlayerDead);
 
 	return true;
 }
@@ -37,41 +34,16 @@ void Platformer::Update(float dt) {
 	case Platformer::eState::StartLevel:
 		m_scene->RemoveAll();
 		{
-			auto player = INSTANTIATE(Player, "Player");
-			player->transform = bunny::Transform{ { 400, 300 }, 0, 3 };
-			player->Initialize();
-			m_scene->Add(std::move(player));
 
-			// create player
-			//auto player = std::make_unique<bunny::Player>(10.0f, bunny::PI, bunny::Transform{ { 400, 300 }, 0, 3 });
-			//player->tag = "Player";
-			//player->m_game = this;
-			//create components
-			//auto component = CREATE_CLASS(SpriteComponent);
-			//component->m_texture = GET_RESOURCE(bunny::Texture, "playership.png", bunny::g_r);
-			//player->AddComponent(std::move(component));
-			//auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);
-			//physicsComponent->m_damping = 0.9f;
-			//player->AddComponent(std::move(physicsComponent));
-			//auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);
-			//collisionComponent->m_radius = 30.0f;
-			//player->AddComponent(std::move(collisionComponent));
-			//player->Initialize();
-			//m_scene->Add(std::move(player));
 		}
 		m_state = eState::Game;
 		break;
 	case Platformer::eState::Game:
-		m_text1->Create(bunny::g_r, "Score: " + std::to_string(m_score), bunny::Color{ 1, 1, 1, 1 });
-		m_text2->Create(bunny::g_r, "Lives: " + std::to_string(m_lives), bunny::Color{ 1, 1, 1, 1 });
 		m_gameTimer += dt;
 		m_spawnTimer += dt;
 		if (m_spawnTimer >= m_spawnTime) {
 			m_spawnTimer = 0;
-			auto enemy = INSTANTIATE(Enemy, "Enemy");
-			enemy->transform = bunny::Transform{ { bunny::random(800), bunny::random(600) }, bunny::randomf(bunny::TwoPI), 2 };
-			enemy->Initialize();
-			m_scene->Add(std::move(enemy));
+			
 		}
 		break;
 	case eState::PlayerDeadStart:

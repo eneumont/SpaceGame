@@ -1,6 +1,3 @@
-Info: Factory.h(58) Class registered: Enemy
-Info: Factory.h(58) Class registered: Player
-Info: Factory.h(58) Class registered: Weapon
 Info: Factory.h(58) Class registered: TextRenderComponent
 Info: Factory.h(58) Class registered: SpriteComponent
 Info: Factory.h(58) Class registered: ModelRenderComponent
@@ -9,9 +6,3 @@ Info: Factory.h(58) Class registered: CircleCollisionComponent
 Info: Factory.h(58) Class registered: Box2DPhysicsComponent
 Info: Factory.h(58) Class registered: Box2DCollisionComponent
 Info: Factory.h(58) Class registered: Actor
-Info: Factory.h(65) Prototype Class registered: PlayerBullet
-Info: Factory.h(65) Prototype Class registered: EnemyBullet
-Info: Factory.h(65) Prototype Class registered: Enemy
-Info: Factory.h(65) Prototype Class registered: Player
-Info: EventManager.cpp(15) Event subscribed: onAddPoints
-Info: EventManager.cpp(15) Event subscribed: onPlayerDead
