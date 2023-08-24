@@ -38,13 +38,13 @@ namespace bunny {
 		if (m_fireTimer <= 0) {
 			m_fireTimer = m_fireRate;
 			auto weapon = INSTANTIATE(Weapon, "EnemyBullet");
-			weapon->transform = { transform.position, transform.rotation, 2 };
+			weapon->transform = { transform.position + forward * 30, transform.rotation, 2 };
 			weapon->Initialize();
 			m_scene->Add(std::move(weapon));
 		}
 	}
 
-	void Enemy::onCollision(Actor* actor) {
+	void Enemy::onCollisionEnter(Actor* actor) {
 		//dynamic_cast<Player*>(actor) could use that for if statement
 		//could use != m_tag or == "Player"
 

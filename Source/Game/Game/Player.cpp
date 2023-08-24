@@ -64,7 +64,7 @@ namespace bunny {
 			case 1:
 			{
 				auto weapon = INSTANTIATE(Weapon, "PlayerBullet");
-				weapon->transform = { transform.position, transform.rotation, 2 };
+				weapon->transform = { transform.position + forward * 30, transform.rotation, 2 };
 				weapon->Initialize();
 				m_scene->Add(std::move(weapon));
 			}
@@ -72,11 +72,11 @@ namespace bunny {
 			case 2:
 			{
 				auto weapon = INSTANTIATE(Weapon, "PlayerBullet");
-				weapon->transform = { transform.position, transform.rotation + DegreesToRadians(10), 2 };
+				weapon->transform = { transform.position + forward * 30, transform.rotation + DegreesToRadians(10), 2 };
 				weapon->Initialize();
 				m_scene->Add(std::move(weapon));
 				weapon = INSTANTIATE(Weapon, "PlayerBullet");
-				weapon->transform = { transform.position, transform.rotation - DegreesToRadians(10), 2 };
+				weapon->transform = { transform.position + forward * 30, transform.rotation - DegreesToRadians(10), 2 };
 				weapon->Initialize();
 				m_scene->Add(std::move(weapon));
 			}
@@ -84,7 +84,7 @@ namespace bunny {
 			case 3:
 			{
 				auto weapon = INSTANTIATE(Weapon, "PlayerBullet");
-				weapon->transform = { transform.position, transform.rotation, 5 };
+				weapon->transform = { transform.position + forward * 30, transform.rotation, 5 };
 				weapon->Initialize();
 				m_scene->Add(std::move(weapon));
 			}
@@ -108,7 +108,7 @@ namespace bunny {
 		}
 	}
 
-	void Player::onCollision(Actor* actor) {
+	void Player::onCollisionEnter(Actor* actor) {
 		if (actor->tag == "Enemy") {
 			m_health--;
 			if (m_health == 0) {

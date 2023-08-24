@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ce594f64-68cc-4c66-97c6-f3c84e253512}</ProjectGuid>
-    <RootNamespace>Physics</RootNamespace>
+    <ProjectGuid>{ddb8684d-6208-422e-bc75-6c21f2ecac30}</ProjectGuid>
+    <RootNamespace>PlatformerGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -78,20 +78,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>
-      </SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>/WHOLEARCHIVE:Framework %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <Lib>
-      <AdditionalDependencies>box2d.lib;</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(ThirdPartyDir)box2d\lib;</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -99,41 +93,29 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>
-      </SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>/WHOLEARCHIVE:Framework %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <Lib>
-      <AdditionalDependencies>box2d.lib;</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(ThirdPartyDir)box2d\lib;</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>
-      </SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>/WHOLEARCHIVE:Framework %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <Lib>
-      <AdditionalDependencies>box2d.lib;</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(ThirdPartyDir)box2d\lib;</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -141,30 +123,46 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>
-      </SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>/WHOLEARCHIVE:Framework %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <Lib>
-      <AdditionalDependencies>box2d.lib;</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(ThirdPartyDir)box2d\lib;</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ContactListener.cpp" />
-    <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Platformer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContactListener.h" />
-    <ClInclude Include="PhysicsSystem.h" />
+    <ProjectReference Include="..\..\Engine\Audio\Audio.vcxproj">
+      <Project>{58acc90e-eec8-4baf-aa6d-344feaf900ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Engine\Core\Core.vcxproj">
+      <Project>{36d8ba8f-93c8-4dbf-912d-31ad70e95d8f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Engine\Framework\Framework.vcxproj">
+      <Project>{e220618c-3a97-44e1-be46-1b911bc24f41}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Engine\Input\Input.vcxproj">
+      <Project>{5e7ae29d-1a05-4d1e-b361-a2e2c3dd1d24}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Engine\Physics\Physics.vcxproj">
+      <Project>{ce594f64-68cc-4c66-97c6-f3c84e253512}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Engine\Renderer\Renderer.vcxproj">
+      <Project>{90ff4c66-86c0-472e-bf69-7a6850ce0d59}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Platformer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Build\Assets\Scenes\title.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

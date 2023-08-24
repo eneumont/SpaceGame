@@ -19,7 +19,7 @@ namespace bunny {
 
 		bool Initialize() override;
 		void Update(float dt) override;
-		void onCollision(Actor* actor) override;
+		void onCollisionEnter(Actor* actor) override;
 
 		PhysicsComponent* m_physics = nullptr;
 	private:

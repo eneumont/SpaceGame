@@ -9,12 +9,12 @@ namespace bunny {
 		Actor::Update(dt);
 
 		bunny::vec2 forward = bunny::vec2{ 0, -1 }.Rotate(transform.rotation);
-		transform.position += forward * speed * kiko::g_time.GetDelta();
+		m_physics->SetVelocity(forward * speed);
 		transform.position.x = bunny::Wrap(transform.position.x, (float)bunny::g_r.GetWidth());
 		transform.position.y = bunny::Wrap(transform.position.y, (float)bunny::g_r.GetHeight());
 	}
 
-	void Weapon::onCollision(Actor* actor) {
+	void Weapon::onCollisionEnter(Actor* actor) {
 		if (actor->tag != tag) {
 			lifespan = 0;
 		}
@@ -23,14 +23,15 @@ namespace bunny {
 	bool Weapon::Initialize() {
 		Actor::Initialize();
 
-		auto collisionComponent = GetComponent<bunny::CollisionComponent>();
+		m_physics = GetComponent<PhysicsComponent>();
 
+		auto collisionComponent = GetComponent<bunny::CollisionComponent>();
 		if (collisionComponent) {
-			auto renderComponent = GetComponent<bunny::RenderComponent>();
+			/*auto renderComponent = GetComponent<bunny::RenderComponent>();
 			if (renderComponent) {
 				float scale = transform.scale;
 				collisionComponent->m_radius = renderComponent->getRadius() * scale;
-			}
+			}*/
 		}
 
 		return true;

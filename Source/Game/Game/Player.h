@@ -17,7 +17,7 @@ namespace bunny {
 
 		bool Initialize() override;
 		void Update(float dt) override;
-		void onCollision(Actor* actor) override;
+		void onCollisionEnter(Actor* actor) override;
 
 		float m_health = 3;
 	private:

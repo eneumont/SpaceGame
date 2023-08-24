@@ -17,7 +17,7 @@ bool SpaceGame::Initialize() {
 	bunny::g_as.AddAudio("melody", "melody.wav");
 
 	m_scene = std::make_unique<bunny::Scene>();
-	m_scene->Load("scene.json");
+	m_scene->Load("Scenes/scene.json");
 	m_scene->Initialize();
 
 	EVENT_SUBSCRIBE("onAddPoints", SpaceGame::onAddPoints);

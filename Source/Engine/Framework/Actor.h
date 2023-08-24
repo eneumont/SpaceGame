@@ -27,8 +27,8 @@ namespace bunny {
 		template<typename T>
 		T* GetComponent();
 
-		float getRadius() { return 30.0f; }
-		virtual void onCollision(Actor* other) {}
+		virtual void onCollisionEnter(Actor* other) {}
+		virtual void onCollisionExit(Actor* other) {}
 
 		friend class Scene;
 		class Scene* m_scene = nullptr;
