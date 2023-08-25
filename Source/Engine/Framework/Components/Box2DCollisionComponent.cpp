@@ -1,6 +1,7 @@
 #include "Box2DCollisionComponent.h"
 #include "Box2DPhysicsComponent.h"
 #include "Framework/Actor.h"
+#include "SpriteComponent.h"
 
 namespace bunny {
 	CLASS_DEFINITION(Box2DCollisionComponent)
@@ -8,6 +9,13 @@ namespace bunny {
 	bool Box2DCollisionComponent::Initialize() {
 		auto component = m_owner->GetComponent<Box2DPhysicsComponent>();
 		if (component) {
+			if (data.size.x == 0 && data.size.y == 0) {
+				auto spriteComponent = m_owner->GetComponent<SpriteComponent>();
+				if (spriteComponent) {
+					data.size = vec2{ spriteComponent->source.w, spriteComponent->source.h };
+				}
+			}
+
 			data.size = data.size * scaleOffset * m_owner->transform.scale;
 
 			if (component->m_body->GetType() == b2_staticBody) {

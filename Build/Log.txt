@@ -5,4 +5,5 @@ Info: Factory.h(58) Class registered: EnginePhysicsComponent
 Info: Factory.h(58) Class registered: CircleCollisionComponent
 Info: Factory.h(58) Class registered: Box2DPhysicsComponent
 Info: Factory.h(58) Class registered: Box2DCollisionComponent
+Info: Factory.h(58) Class registered: AnimComponent
 Info: Factory.h(58) Class registered: Actor

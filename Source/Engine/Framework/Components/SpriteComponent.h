@@ -11,8 +11,9 @@ namespace bunny {
 		bool Initialize() override;
 		void Update(float dt) override;
 		void Draw(class Renderer& r) override;
-		virtual float getRadius() { return m_texture->GetSize().Length() * 0.5f; }
+		//virtual float getRadius() { return m_texture->GetSize().Length() * 0.5f; }
 
+		Rect source;
 		std::string textureName;
 		res_t<Texture> m_texture;
 	};

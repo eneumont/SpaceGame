@@ -13,6 +13,7 @@
 #include "Math/Color.h"
 #include "Math/Matrix2x2.h"
 #include "Math/Matrix3x3.h"
+#include "Math/Rect.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 #include "Renderer/Texture.h"

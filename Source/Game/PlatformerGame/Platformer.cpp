@@ -23,12 +23,13 @@ void Platformer::Update(float dt) {
 	switch (m_state) {
 	case Platformer::eState::Title:
 		m_scene->GetActorByName("Title")->active = true;
+		bunny::g_as.PlayOneShot("melody", true);
 		break;
 	case Platformer::eState::StartGame:
 		m_score = 0;
 		m_lives = 3;
-		bunny::g_as.PlayOneShot("melody", true);
-		m_scene->GetActorByName("Title")->active = false;
+		//bunny::g_as.PlayOneShot("melody", true);
+		//m_scene->GetActorByName("Title")->active = false;
 		m_state = eState::StartLevel;
 		break;
 	case Platformer::eState::StartLevel:
