@@ -23,9 +23,13 @@ namespace bunny {
 		}
 
 		res_t<T> resource = std::make_shared<T>();
-		resource->Create(filename, args...);
+		// resource not in resource manager, create it
+		if (!resource->Create(filename, args...)) {
+			WARNING_LOG("Could not create resource: " << filename);
+			return res_t<T>();
+		}
+		//resource->Create(filename, args...);
 		m_resources[filename] = resource;
-
 		return resource;
 	}
 }

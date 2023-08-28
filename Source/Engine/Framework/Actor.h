@@ -15,6 +15,9 @@ namespace bunny {
 			transform{ transform }
 		{}
 		Actor(const Actor& other);
+		virtual ~Actor() {
+			Destroy();
+		}
 
 		virtual bool Initialize() override;
 		virtual void Destroy() override;
