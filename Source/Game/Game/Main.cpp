@@ -48,7 +48,7 @@ public:
 int main(int argc, char* argv[]) {
 	bunny::MemoryTracker::Initialize();
 	bunny::seedRandom((unsigned int)time(nullptr));
-	bunny::setFilePath("Assets");
+	bunny::setFilePath("Assets/Space");
 
 	bunny::g_r.Initialize();
 	bunny::g_r.CreateWindow("CSC196", 800, 600);

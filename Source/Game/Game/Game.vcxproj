@@ -180,7 +180,7 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Build\Assets\Scenes\scene.json" />
+    <None Include="..\..\..\Build\Assets\Space\Scenes\scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

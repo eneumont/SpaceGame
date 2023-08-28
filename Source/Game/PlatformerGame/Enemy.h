@@ -7,7 +7,7 @@ namespace bunny {
 	public:
 		CLASS_DECLARATION(Enemy)
 
-			bool Initialize() override;
+		bool Initialize() override;
 		void Update(float dt) override;
 		void onCollisionEnter(Actor* actor) override;
 		void onCollisionExit(Actor* actor) override;

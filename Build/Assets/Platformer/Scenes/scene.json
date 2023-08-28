@@ -1,0 +1,160 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "Background",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "bunny.jpg"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 450, 0 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "orangejuice.ttf",
+					"fontSize": 24,
+					"text": "ASTEROIDZZZ"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "PlayerBullet",
+			"prototype": true,
+			"tag": "Player",
+			"lifespan": 2,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 5,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ],
+					"isTrigger": true,
+					"constrainAngle": true
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "EnemyBullet",
+			"prototype": true,
+			"tag": "Enemy",
+			"lifespan": 2,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 5,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ],
+					"isTrigger": true,
+					"constrainAngle": true
+				}
+			]
+		},
+		{
+			"type": "Enemy",
+			"name": "Enemy",
+			"prototype": true,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"speed": 8,
+			"turnRate": 0.5,
+			"fireRate": 2,
+			"fireTimer": 2,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"prototype": true,
+			"tag": "Player",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 3,
+				"rotation": 0
+			},
+			"speed": 10,
+			"turnRate": 8,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "playership.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		}
+	]
+}

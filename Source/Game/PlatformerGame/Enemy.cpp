@@ -8,7 +8,7 @@
 namespace bunny {
 	CLASS_DEFINITION(Enemy)
 
-		bool Enemy::Initialize() {
+	bool Enemy::Initialize() {
 		Actor::Initialize();
 
 		m_physics = GetComponent<PhysicsComponent>();
