@@ -1,6 +1,5 @@
 #pragma once
 #include "Framework/Actor.h"
-#include "Framework/Components/PhysicsComponent.h"
 
 namespace bunny {
 	class Player : public Actor {
@@ -16,6 +15,7 @@ namespace bunny {
 		float jump = 0;
 		int groundCount = 0;
 
-		PhysicsComponent* m_physics = nullptr;
+		class PhysicsComponent* m_physics = nullptr;
+		class AnimComponent* m_anim = nullptr;
 	};
 }

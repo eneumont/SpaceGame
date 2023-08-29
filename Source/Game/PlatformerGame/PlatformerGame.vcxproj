@@ -166,6 +166,7 @@
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Build\Assets\Platformer\Scenes\tilemap.json" />
     <None Include="..\..\..\Build\Assets\Platformer\Scenes\title.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,12 +12,15 @@ namespace bunny {
 		Actor::Initialize();
 
 		m_physics = GetComponent<PhysicsComponent>();
+		m_anim = GetComponent<AnimComponent>();
 
 		return true;
 	}
 
 	void Player::Update(float dt) {
 		Actor::Update(dt);
+
+		bool onGround = (groundCount > 0);
 
 		//movement
 		float dir = 0;
@@ -29,7 +32,9 @@ namespace bunny {
 			dir = 1;
 		}
 
-		bool onGround = (groundCount > 0);
+		vec2 forward = vec2{ 1, 0 };
+		m_physics->ApplyForce(forward * speed * dir * ((onGround) ? 1 : 0.25f));
+		
 		if (onGround && (g_is.GetKeyDown(SDL_SCANCODE_W) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_W) || g_is.GetKeyDown(SDL_SCANCODE_UP) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_UP))) {
 			bunny::vec2 up = bunny::vec2{ 0, -1 };
 			m_physics->SetVelocity(up * jump);
@@ -39,12 +44,14 @@ namespace bunny {
 
 		}
 
-		vec2 forward = vec2{ 1, 0 };
-
-		m_physics->ApplyForce(forward * speed * dir);
-
-		if (g_is.GetKeyDown(SDL_SCANCODE_SPACE) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_SPACE)) {
-			
+		
+		vec2 velocity = m_physics->m_velocity;
+		if (std::fabs(velocity.x) > 0.2f) {
+			// if dir != 0 dir < 0
+			m_anim->flipH = (velocity.x < -0.1f);
+			m_anim->setSequence("run");
+		} else {
+			m_anim->setSequence("idle");
 		}
 	}
 

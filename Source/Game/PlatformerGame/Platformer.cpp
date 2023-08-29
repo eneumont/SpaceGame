@@ -10,6 +10,7 @@ bool Platformer::Initialize() {
 
 	m_scene = std::make_unique<bunny::Scene>();
 	m_scene->Load("Scenes/title.json");
+	m_scene->Load("Scenes/tilemap.json");
 	m_scene->Initialize();
 
 	return true;

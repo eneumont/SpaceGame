@@ -11,9 +11,11 @@ namespace bunny {
 		bool Initialize() override;
 		void Update(float dt) override;
 		void Draw(class Renderer& r) override;
-		//virtual float getRadius() { return m_texture->GetSize().Length() * 0.5f; }
 
 		Rect source;
+		bool flipH = false;
+		vec2 origin{ 0.5f, 0.5f };
+
 		std::string textureName;
 		res_t<Texture> m_texture;
 	};

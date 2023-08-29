@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Player.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Framework.h"
@@ -19,15 +20,16 @@ namespace bunny {
 	void Enemy::Update(float dt) {
 		Actor::Update(dt);
 
-		//movement
-		float dir = 0;
-		if (g_is.GetKeyDown(SDL_SCANCODE_A) || g_is.GetKeyDown(SDL_SCANCODE_LEFT)) {
-			dir = -1;
+		vec2 forward = vec2{ 0, -1 }.Rotate(transform.rotation);
+		Player* player = m_scene->GetActor<Player>();
+		if (player) {
+			vec2 direction = player->transform.position - transform.position;
+			m_physics->ApplyForce(direction.Normalized() * speed);
 		}
 
-		if (g_is.GetKeyDown(SDL_SCANCODE_D) || g_is.GetKeyDown(SDL_SCANCODE_RIGHT)) {
-			dir = 1;
-		}
+		//movement
+	/*	float dir = 0;
+		
 
 		bool onGround = (groundCount > 0);
 		if (onGround && (g_is.GetKeyDown(SDL_SCANCODE_W) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_W) || g_is.GetKeyDown(SDL_SCANCODE_UP) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_UP))) {
@@ -45,7 +47,7 @@ namespace bunny {
 
 		if (g_is.GetKeyDown(SDL_SCANCODE_SPACE) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_SPACE)) {
 
-		}
+		}*/
 	}
 
 	void Enemy::onCollisionEnter(Actor* actor) {

@@ -1,5 +1,6 @@
 Info: Factory.h(58) Class registered: Enemy
 Info: Factory.h(58) Class registered: Player
+Info: Factory.h(58) Class registered: TilemapComponent
 Info: Factory.h(58) Class registered: TextRenderComponent
 Info: Factory.h(58) Class registered: SpriteComponent
 Info: Factory.h(58) Class registered: ModelRenderComponent
@@ -10,3 +11,5 @@ Info: Factory.h(58) Class registered: Box2DCollisionComponent
 Info: Factory.h(58) Class registered: AnimComponent
 Info: Factory.h(58) Class registered: Actor
 Info: Factory.h(65) Prototype Class registered: Rock
+Info: Factory.h(65) Prototype Class registered: tile01
+Info: Factory.h(65) Prototype Class registered: tile02

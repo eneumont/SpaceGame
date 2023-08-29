@@ -124,11 +124,11 @@
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"constrainAngle": true
+					"constrainAngle": true,
+					"gravityScale":  1
 				},
 				{
-					"type": "Box2DCollisionComponent",
-					"resitution": 0
+					"type": "Box2DCollisionComponent"
 				}
 			]
 		},
@@ -137,7 +137,7 @@
 			"name": "Enemy",
 			"tag": "Enemy",
 			"persistent": true,
-			"speed": 10,
+			"speed": 7,
 			"jump": 6,
 			"transform": {
 				"position": [ 600, 300 ],
@@ -162,11 +162,14 @@
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"constrainAngle": true
+					"constrainAngle": true,
+					"gravityScale": 0,
+					"damping":  0.9
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"resitution": 0
+					"resitution": 0.1,
+					"isTrigger":  true
 				}
 			]
 		},
