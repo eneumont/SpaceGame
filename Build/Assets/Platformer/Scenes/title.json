@@ -81,7 +81,8 @@
 			"name": "Player",
 			"tag": "Player",
 			"persistent": true,
-			"speed": 10,
+			"speed": 50,
+			"maxSpeed": 8,
 			"jump": 6,
 			"transform": {
 				"position": [ 400, 300 ],
@@ -92,6 +93,8 @@
 				{
 					"type": "AnimComponent",
 					"defaultSequenceName": "idle",
+					"source": [0, 0, 32, 32],
+					"origin": [0.5, 1],
 					"sequences": [
 						{
 							"name": "idle",
@@ -170,26 +173,6 @@
 					"type": "Box2DCollisionComponent",
 					"resitution": 0.1,
 					"isTrigger":  true
-				}
-			]
-		},
-		{
-			"type": "Actor",
-			"tag": "Ground",
-			"transform": {
-				"position": [
-					400,
-					520
-				]
-			},
-			"components": [
-				{
-					"type": "Box2DPhysicsComponent",
-					"isDynamic": false
-				},
-				{
-					"type": "Box2DCollisionComponent",
-					"size": [ 600, 20 ]
 				}
 			]
 		},

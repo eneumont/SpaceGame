@@ -8,7 +8,7 @@ namespace bunny {
 	bool AnimComponent::Initialize() {
 		SpriteComponent::Initialize();
 		setSequence(defaultSequenceName);
-		updateSource();
+		if (source.w == 0 && source.h == 0) updateSource();
 		return true;
 	}
 
@@ -55,7 +55,7 @@ namespace bunny {
 		}
 	}
 
-	void AnimComponent::setSequence(const std::string& name) {
+	void AnimComponent::setSequence(const std::string& name, bool update) {
 		if (m_sequence && m_sequence->name == name) return;
 
 		if (m_sequences.find(name) != m_sequences.end()) {
@@ -63,6 +63,8 @@ namespace bunny {
 			if (m_sequence->texture) m_texture = m_sequence->texture;
 			frames = m_sequence->startFrame;
 			frameTimer = 1.0f / m_sequence->fps;
+
+			if (update) updateSource();
 		}
 	}
 

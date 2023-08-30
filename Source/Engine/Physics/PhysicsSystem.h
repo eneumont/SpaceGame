@@ -21,6 +21,7 @@ namespace bunny {
 
 		struct CollisionData {
 			vec2 size;
+			vec2 offset;
 			float density = 1;
 			float friction = 1;
 			float restitution = 0.3f;

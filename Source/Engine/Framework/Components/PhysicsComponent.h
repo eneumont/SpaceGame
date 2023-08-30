@@ -9,6 +9,7 @@ namespace bunny {
 		virtual void ApplyTorque(float torque) = 0;
 
 		virtual void SetVelocity(const vec2& velocity) { this->m_velocity; }
+		virtual void SetGravityScale(float scale) {}
 
 		vec2 m_velocity;
 		vec2 m_acceleration;

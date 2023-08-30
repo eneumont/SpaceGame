@@ -35,8 +35,12 @@ namespace bunny {
 		m_body->ApplyTorque(torque, true);
 	}
 
-	void bunny::Box2DPhysicsComponent::SetVelocity(const vec2& velocity) {
+	void Box2DPhysicsComponent::SetVelocity(const vec2& velocity) {
 		m_body->SetLinearVelocity(VEC2_TO_B2VEC2(velocity));
+	}
+
+	void Box2DPhysicsComponent::SetGravityScale(float scale) {
+		m_body->SetGravityScale(scale);
 	}
 
 	void Box2DPhysicsComponent::Read(const json_t& value) {

@@ -28,7 +28,7 @@ namespace bunny {
 		int frames = 0;
 		float frameTimer = 0;
 
-		void setSequence(const std::string& name);
+		void setSequence(const std::string& name, bool update = true);
 		void updateSource();
 	private:
 		std::string defaultSequenceName;
