@@ -26,6 +26,7 @@ public:
 	void onPlayerDead(const bunny::Event& event);
 private:
 	eState m_state = eState::Title;
+	std::unique_ptr<bunny::Text> m_text1;
 	float m_spawnTimer = 0;
 	float m_spawnTime = 3;
 	float m_stateTimer = 0;

@@ -139,6 +139,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Platformer.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Engine\Audio\Audio.vcxproj">
@@ -164,8 +165,11 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Platformer.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rock.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Build\Assets\Platformer\Scenes\end.json" />
+    <None Include="..\..\..\Build\Assets\Platformer\Scenes\game.json" />
     <None Include="..\..\..\Build\Assets\Platformer\Scenes\tilemap.json" />
     <None Include="..\..\..\Build\Assets\Platformer\Scenes\title.json" />
   </ItemGroup>

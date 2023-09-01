@@ -6,7 +6,7 @@
 namespace bunny {
 	CLASS_DEFINITION(Box2DCollisionComponent)
 
-		bool Box2DCollisionComponent::Initialize() {
+	bool Box2DCollisionComponent::Initialize() {
 		auto component = m_owner->GetComponent<Box2DPhysicsComponent>();
 		if (component) {
 			auto spriteComponent = m_owner->GetComponent<SpriteComponent>();

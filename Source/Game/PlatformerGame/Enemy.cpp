@@ -26,28 +26,6 @@ namespace bunny {
 			vec2 direction = player->transform.position - transform.position;
 			m_physics->ApplyForce(direction.Normalized() * speed);
 		}
-
-		//movement
-	/*	float dir = 0;
-		
-
-		bool onGround = (groundCount > 0);
-		if (onGround && (g_is.GetKeyDown(SDL_SCANCODE_W) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_W) || g_is.GetKeyDown(SDL_SCANCODE_UP) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_UP))) {
-			bunny::vec2 up = bunny::vec2{ 0, -1 };
-			m_physics->SetVelocity(up * jump);
-		}
-
-		if (g_is.GetKeyDown(SDL_SCANCODE_S) || g_is.GetKeyDown(SDL_SCANCODE_DOWN)) {
-
-		}
-
-		vec2 forward = vec2{ 1, 0 };
-
-		m_physics->ApplyForce(forward * speed * dir);
-
-		if (g_is.GetKeyDown(SDL_SCANCODE_SPACE) && !g_is.GetPreviousKeyDown(SDL_SCANCODE_SPACE)) {
-
-		}*/
 	}
 
 	void Enemy::onCollisionEnter(Actor* actor) {
@@ -55,11 +33,18 @@ namespace bunny {
 
 		}
 
+		if (actor->tag == "PlayerRock") {
+			lifespan = 0;
+			EventManager::Instance().DispatchEvent("onAddPoints", 100);
+		}
+
 		if (actor->tag == "Ground") groundCount++;
 	}
 
 	void Enemy::onCollisionExit(Actor* actor) {
 		if (actor->tag == "Ground") groundCount--;
+		//if (actor->tag == "Player") EventManager::Instance().DispatchEvent("Add");
+
 	}
 
 	void Enemy::Read(const json_t& value) {

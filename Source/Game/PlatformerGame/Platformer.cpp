@@ -5,6 +5,10 @@
 #include "Framework/Framework.h"
 
 bool Platformer::Initialize() {
+	std::shared_ptr<bunny::Font>m_font = GET_RESOURCE(bunny::Font, "Fonts/orangejuice.ttf", 24);
+	m_text1 = std::make_unique<bunny::Text>(m_font);
+
+
 	bunny::g_as.AddAudio("hit", "Audio/hit.wav");
 	bunny::g_as.AddAudio("melody", "Audio/melody.wav");
 
@@ -12,6 +16,9 @@ bool Platformer::Initialize() {
 	m_scene->Load("Scenes/title.json");
 	m_scene->Load("Scenes/tilemap.json");
 	m_scene->Initialize();
+	
+	EVENT_SUBSCRIBE("onAddPoints", Platformer::onAddPoints);
+	EVENT_SUBSCRIBE("onPlayerDead", Platformer::onPlayerDead);
 
 	return true;
 }
@@ -24,6 +31,8 @@ void Platformer::Update(float dt) {
 	switch (m_state) {
 	case Platformer::eState::Title:
 	{
+		m_text1->Create(bunny::g_r, std::to_string(m_score), bunny::Color{1, 1, 1, 1});
+		//m_scene->Load("Scenes/title.json");
 		/*auto actor = INSTANTIATE(Actor, "Rock");
 		actor->transform.position = { bunny::random(bunny::g_r.GetWidth()), 100 };
 		actor->Initialize();
@@ -37,7 +46,7 @@ void Platformer::Update(float dt) {
 		m_state = eState::StartLevel;
 		break;
 	case Platformer::eState::StartLevel:
-		m_scene->RemoveAll();
+		//m_scene->RemoveAll();
 		{
 
 		}
@@ -87,6 +96,7 @@ void Platformer::Draw(bunny::Renderer& r) {
 
 	switch (m_state) {
 	case eState::Title:
+		m_text1->Draw(r, 500, 0);
 		break;
 	case eState::Game:
 		break;
